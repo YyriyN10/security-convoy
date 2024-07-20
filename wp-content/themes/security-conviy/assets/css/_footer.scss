@@ -1,0 +1,174 @@
+
+.site-footer{
+  padding-bottom: 30px;
+  background-color: $color-black;
+
+  .container{
+    position: relative;
+    z-index: 7;
+  }
+
+  .contacts-social{
+    display: flex;
+    justify-content: space-between;
+
+    @media(max-width: 520px){
+      flex-wrap: wrap;
+    }
+  }
+
+  .social,
+  .contacts{
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-bottom: 32px;
+
+    @media(max-width: 520px){
+      width: 100%;
+      margin-bottom: 24px;
+    }
+  }
+
+  .type-title{
+    font-size: 16px;
+    margin-bottom: 16px;
+    width: 100%;
+  }
+
+  .address{
+    margin-bottom: 16px;
+    font-size: 18px;
+    width: 100%;
+
+    @media(max-width: 767px){
+      font-size: 16px;
+    }
+
+    span{
+      display: block;
+      font-family: $f-R-light;
+      margin-top: 8px;
+    }
+  }
+
+  .massagers-wrapper{
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+
+    @media(max-width: 767px){
+      margin-bottom: 16px;
+    }
+
+    a{
+      width: 32px;
+      margin-right: 24px;
+      transition: all 0.2s;
+
+      &:hover{
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .phone{
+    display: inline-flex;
+    align-items: center;
+    color: $color-white !important;
+    font-size: 18px;
+    transition: all 0.5s;
+
+    &:hover{
+      @include golden-text;
+    }
+
+    svg{
+      width: 32px;
+      height: auto;
+      margin-right: 8px;
+    }
+  }
+
+  .soc-wrapper{
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    a{
+      width: 32px;
+      margin-right: 8px;
+      transition: all 0.2s;
+
+      &:hover{
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .logo-wrapper{
+    display: flex;
+    width: 100%;
+    align-items: center;
+
+    svg{
+      width: 64px;
+      height: auto;
+      margin-right: 8px;
+    }
+
+    .name{
+      margin-bottom: 0;
+      width: calc(100% - 72px);
+      text-transform: uppercase;
+      @include golden-text;
+      font-size: 24px;
+      font-family: $f-HP-reg;
+
+      @media(max-width: 767px){
+        font-size: 18px;
+      }
+    }
+
+  }
+
+  .copy-dev{
+    position: relative;
+    padding-top: 24px;
+
+    @media(max-width: 440px){
+      font-size: 14px;
+    }
+
+    &:before{
+      content: '';
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      top: 0;
+      border-radius: 8px;
+      background: linear-gradient(122deg, #D8AE5E 0.87%, #F2D7A5 90.75%);
+      height: 1px;
+      /*width: 100%;*/
+    }
+
+    .copy{
+      margin-bottom: 24px;
+      font-family: $f-R-light;
+    }
+
+    .dev{
+      a{
+        color: $color-white !important;
+        transition: all 0.5s;
+
+        &:hover{
+          @include golden-text;
+        }
+
+      }
+    }
+  }
+}

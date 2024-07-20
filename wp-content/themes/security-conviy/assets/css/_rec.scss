@@ -1,0 +1,96 @@
+
+.rec{
+  position: fixed;
+  z-index: 7;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0);
+  transition: all 0.5s;
+  opacity: 0;
+
+  .angle{
+    position: absolute;
+    width: 40px;
+    height: 35px;
+    border-color: $color-white;
+
+    @media(max-width: 767px){
+      width: 20px;
+      height: 15px;
+    }
+
+    &.angle-top-left{
+      top: 24px;
+      left: 24px;
+      border-top: 1px solid;
+      border-left: 1px solid;
+
+      @media(max-width: 767px){
+        top: 12px;
+        left: 12px;
+      }
+    }
+
+    &.angle-top-right{
+      top: 24px;
+      right: 24px;
+      border-top: 1px solid;
+      border-right: 1px solid;
+
+      @media(max-width: 767px){
+        top: 12px;
+        right: 12px;
+      }
+    }
+
+    &.angle-bottom-right{
+      bottom: 24px;
+      right: 24px;
+      border-bottom: 1px solid;
+      border-right: 1px solid;
+
+      @media(max-width: 767px){
+        bottom: 12px;
+        right: 12px;
+      }
+    }
+
+    &.angle-bottom-left{
+      bottom: 24px;
+      left: 24px;
+      border-bottom: 1px solid;
+      border-left: 1px solid;
+
+      @media(max-width: 767px){
+        bottom: 12px;
+        left: 12px;
+      }
+    }
+  }
+
+  .text{
+    position: absolute;
+    top: 48px;
+    left: 48px;
+    text-transform: uppercase;
+    font-size: 18px;
+    margin-bottom: 0;
+    font-family: $f-R-bold;
+    
+    @media(max-width: 767px){
+      display: none;
+    }
+
+    &:before{
+      content: '';
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: $color-gold-gradient;
+      margin-right: 8px;
+      display: inline-block;
+    }
+  }
+}
