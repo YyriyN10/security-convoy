@@ -264,6 +264,16 @@ jQuery(function($) {
     })
   });
 
+  /**
+   * Form btn block
+   */
+
+  $('form').on('submit', function () {
+
+    $(this).find('.button').css({'pointer-events' : 'none'});
+
+  });
+
 
 
   // UTM
