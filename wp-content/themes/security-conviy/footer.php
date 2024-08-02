@@ -47,7 +47,7 @@
       <div class="row">
       <div class="copy-dev col-12 text-center">
         <p class="copy">© 2012-<?php echo date('Y');?> <?php echo esc_html( pll__( 'ОХОРОННИЙ ХОЛДІНГ. Всі права захищені' ) ); ?></p>
-        <p class="dev"><?php echo esc_html( pll__( 'розроблено в' ) ); ?> <a href="https://smmstudio.com/" target="_blank">SMMTUDIO</a></p>
+        <p class="dev"><?php echo esc_html( pll__( 'розроблено в' ) ); ?> <a href="https://smmstudio.com/" target="_blank">SMMSTUDIO</a></p>
       </div>
     </div>
     </div>

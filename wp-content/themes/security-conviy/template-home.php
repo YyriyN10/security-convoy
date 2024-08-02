@@ -63,9 +63,10 @@
 	<!-- Переваги -->
 <?php
 	$productDescriptionAdvList = carbon_get_post_meta( get_the_ID(), 'security_product_description_advantages_list'.security_lang_prefix());
+	$i = 0;
 
 
-	if ( $productDescriptionAdvList):
+	if ( $productDescriptionAdvList ):
 ?>
 	<section class="product-description indent-top-big indent-bottom-small animation-tracking">
 	  <div class="container">
@@ -73,16 +74,34 @@
 	      <div class="content col-12">
           <div class="light-element top"><img src="<?php echo THEME_PATH;?>/assets/img/light-adv-top.png" alt=""></div>
           <div class="light-element bottom"><img src="<?php echo THEME_PATH;?>/assets/img/light-adv-bottom.png" alt=""></div>
-            <ul class="product-description__term">
-	            <?php foreach( $productDescriptionAdvList as $item ):?>
+          <ul class="product-description__term">
+		      <?php foreach( $productDescriptionAdvList as $item ):?>
                 <li class="product-description__term-item">
-                  <span class="product-description__term-icon">
-                    <img src="<?php echo $item['icon'];?>" alt="" class="svg-pic">
-                  </span>
+                      <span class="product-description__term-icon">
+                        <img src="<?php echo $item['icon'];?>" alt="" class="svg-pic">
+                      </span>
                   <p class="product-description__term-text"><?php echo $item['description'];?></p>
+			        <?php if( $item['inner_list']):?>
+                      <ul class="product-description__inner-list">
+					      <?php foreach( $item['inner_list'] as $innerItem ): $i++;?>
+                            <li class="product-description__inner-item">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+                                <path d="M9.83726 0.440803L3.20567 8.24543L2.03341 7.17347C1.80711 6.97341 1.50403 6.8627 1.18943 6.8652C0.874832 6.86771 0.573893 6.98321 0.35143 7.18685C0.128967 7.39049 0.00277913 7.66596 4.53577e-05 7.95393C-0.00268841 8.24191 0.11825 8.51934 0.336813 8.72649L2.46896 10.6782C2.69392 10.8842 2.99906 10.9999 3.31725 11H3.39284C3.56249 10.9906 3.72797 10.9481 3.8782 10.8753C4.02844 10.8026 4.15995 10.7013 4.26394 10.5782L11.7306 1.79173C11.8315 1.6783 11.9066 1.54757 11.9516 1.40721C11.9965 1.26685 12.0104 1.11969 11.9923 0.974357C11.9743 0.829028 11.9247 0.68846 11.8466 0.560901C11.7684 0.433343 11.6631 0.321364 11.537 0.231536C11.4109 0.141708 11.2665 0.0758395 11.1122 0.037798C10.9579 -0.00024341 10.7969 -0.00969212 10.6386 0.0100054C10.4802 0.0297029 10.3278 0.0781503 10.1902 0.152505C10.0526 0.226859 9.9326 0.325624 9.83726 0.443V0.440803Z" fill="url(#paint0_linear_1042_206<?php echo $i;?>)"/>
+                                <defs>
+                                  <linearGradient id="paint0_linear_1042_206<?php echo $i;?>" x1="0.783333" y1="-0.906481" x2="12.7656" y2="7.21507" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#D8AE5E"/>
+                                    <stop offset="1" stop-color="#F2D7A5"/>
+                                  </linearGradient>
+                                </defs>
+                              </svg>
+                              <span><?php echo $innerItem['text'];?></span>
+                            </li>
+					      <?php endforeach;?>
+                      </ul>
+			        <?php endif;?>
                 </li>
-	            <?php endforeach;?>
-            </ul>
+		      <?php endforeach;?>
+          </ul>
 	      </div>
 	    </div>
 	  </div>
@@ -138,8 +157,46 @@
                   </div>
                 </div>
               <?php endforeach;?>
-
             </div>
+            <?php
+              $additionalAspectsTitle = carbon_get_post_meta(get_the_ID(), 'security_additional_aspects_block_title'.security_lang_prefix());
+	            $additionalAspectsList = carbon_get_post_meta(get_the_ID(), 'security_additional_aspects_list'.security_lang_prefix());
+
+	            if ( $additionalAspectsTitle && $additionalAspectsList ):?>
+              <div class="row">
+                <div class="additional-aspects col-12">
+                  <div class="inner">
+                    <h2 class="block-title small-title"><?php echo $additionalAspectsTitle;?></h2>
+                    <ul class="additional-aspects__list">
+	                    <?php foreach( $additionalAspectsList as $item ):?>
+                          <li class="additional-aspects__item">
+                            <h3 class="additional-aspects__name"><?php echo $item['name'];?></h3>
+		                      <?php if( $item['inner_list'] ):?>
+                                <ul class="additional-aspects__item-list">
+				                    <?php foreach( $item['inner_list'] as $innerItem ):?>
+                                      <li>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                          <path d="M15.8373 6.4408L9.20567 14.2454L8.03341 13.1735C7.80711 12.9734 7.50403 12.8627 7.18943 12.8652C6.87483 12.8677 6.57389 12.9832 6.35143 13.1869C6.12897 13.3905 6.00278 13.666 6.00005 13.9539C5.99731 14.2419 6.11825 14.5193 6.33681 14.7265L8.46896 16.6782C8.69392 16.8842 8.99906 16.9999 9.31725 17H9.39284C9.56249 16.9906 9.72797 16.9481 9.8782 16.8753C10.0284 16.8026 10.16 16.7013 10.2639 16.5782L17.7306 7.79173C17.8315 7.6783 17.9066 7.54757 17.9516 7.40721C17.9965 7.26685 18.0104 7.11969 17.9923 6.97436C17.9743 6.82903 17.9247 6.68846 17.8466 6.5609C17.7684 6.43334 17.6631 6.32136 17.537 6.23154C17.4109 6.14171 17.2665 6.07584 17.1122 6.0378C16.9579 5.99976 16.7969 5.99031 16.6386 6.01001C16.4802 6.0297 16.3278 6.07815 16.1902 6.1525C16.0526 6.22686 15.9326 6.32562 15.8373 6.443V6.4408Z" fill="url(#paint0_linear_1046_344)"/>
+                                          <defs>
+                                            <linearGradient id="paint0_linear_1046_344" x1="6.78333" y1="5.09352" x2="18.7656" y2="13.2151" gradientUnits="userSpaceOnUse">
+                                              <stop stop-color="#D8AE5E"/>
+                                              <stop offset="1" stop-color="#F2D7A5"/>
+                                            </linearGradient>
+                                          </defs>
+                                        </svg>
+                                        <span><?php echo $innerItem['text'];?></span>
+                                      </li>
+				                    <?php endforeach;?>
+                                </ul>
+		                      <?php endif;?>
+                          </li>
+	                    <?php endforeach;?>
+                    </ul>
+
+                  </div>
+                </div>
+              </div>
+            <?php endif;?>
           </div>
         </section>
     <?php endif;?>
@@ -246,7 +303,7 @@
 
 	if ( $aboutUsBlTitle && $aboutUsList ):
 		?>
-      <section class="about-us indent-top-small indent-bottom-big animation-tracking">
+      <section class="about-us indent-top-small indent-bottom-small animation-tracking">
         <div class="custom-anchor" id="about-us"></div>
         <div class="container">
           <div class="row first-up">
@@ -396,6 +453,42 @@
         </svg>
       </section>
 	<?php endif;?>
+
+    <?php
+        $whyChooseUsTitle = carbon_get_post_meta(get_the_ID(), 'security_why_choose_us_title'.security_lang_prefix());
+	      $whyChooseUsList = carbon_get_post_meta(get_the_ID(), 'security_why_choose_us_list'.security_lang_prefix());
+	      $whyChooseUsImage = carbon_get_post_meta(get_the_ID(), 'security_why_choose_us_image'.security_lang_prefix());
+
+        if( $whyChooseUsTitle && $whyChooseUsList && $whyChooseUsImage ):?>
+
+        <!-- Чому обирають нас -->
+        <section class="why-choose-us indent-top-small indent-bottom-big animation-tracking">
+          <div class="container">
+            <div class="row">
+              <h2 class="block-title small-title col-12 first-up"><?php echo $whyChooseUsTitle;?></h2>
+            </div>
+            <div class="row">
+              <div class="content col-12 second-up">
+                <ul class="why-choose-us__list">
+                  <?php foreach( $whyChooseUsList as $item ):?>
+                      <li class="why-choose-us__item">
+                        <h3 class="why-choose-us__name"><?php echo $item['title'];?></h3>
+                        <p class="why-choose-us__description"><?php echo $item['description'];?></p>
+                      </li>
+                  <?php endforeach;?>
+                </ul>
+                <div class="pic-wrapper">
+                  <img
+                     class="lazy"
+                     data-src="<?php echo wp_get_attachment_image_src($whyChooseUsImage, 'full')[0];?>"
+                     alt="<?php echo get_post_meta($whyChooseUsImage, '_wp_attachment_image_alt', TRUE);?>"
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    <?php endif;?>
 
     <!-- Шлях клієнта -->
 <?php

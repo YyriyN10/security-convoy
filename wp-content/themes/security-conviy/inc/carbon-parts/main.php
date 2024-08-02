@@ -34,12 +34,16 @@
 
 		         ->add_fields( array(
 
-			         Field::make( 'complex', 'security_product_description_advantages_list'.security_lang_prefix(), __( 'Перелік переваг' ) )
-			              ->add_fields( array(
-			              	  Field::make_image('icon', 'Іконка переваги')
-								->set_value_type('url'),
-				              Field::make( 'text', 'description', __( 'Текст переваги' ) ),
-			              ) ),
+		         	Field::make_complex('security_product_description_advantages_list'.security_lang_prefix(), 'Перелік переваг1')
+		                ->add_fields( array(
+			                Field::make_image('icon', 'Іконка переваги')
+			                     ->set_value_type('url'),
+			                Field::make( 'text', 'description', __( 'Текст переваги' ) ),
+			                Field::make_complex('inner_list', 'Внутрішній перелік')
+			                    ->add_fields( array(
+			                    	Field::make_text('text', 'Текст')
+			                    ))
+		                )),
 
 		         ));
 
@@ -64,6 +68,24 @@
 						))
 
 
+		         ));
+
+		Container::make( 'post_meta', __('Додаткові аспекти') )
+		         ->where( function( $homeFields ) {
+			         $homeFields->where( 'post_type', '=', 'page' );
+			         $homeFields->where( 'post_template', '=', 'template-home.php' );
+		         } )
+
+		         ->add_fields( array(
+			         Field::make_text('security_additional_aspects_block_title'.security_lang_prefix(), 'Заголовок блоку'),
+			         Field::make_complex('security_additional_aspects_list'.security_lang_prefix(), 'Перелік аспектів')
+			              ->add_fields(array(
+				              Field::make_text('name', 'Назва'),
+				              Field::make_complex('inner_list', 'Перелік того що входить')
+				                   ->add_fields(array(
+					                   Field::make_text('text', 'Текст')
+				                   ))
+			              ))
 		         ));
 
 		Container::make('post_meta', 'Призив до дії')
@@ -135,27 +157,45 @@
 				                   ->set_type( 'image' )
 				                   ->set_value_type( 'url' )
 					              ->set_conditional_logic( array(
-						              'relation' => 'AND', // Optional, defaults to "AND"
+						              'relation' => 'AND',
 						              array(
 							              'field' => 'select_type',
-							              'value' => 'image', // Optional, defaults to "". Should be an array if "IN" or "NOT IN" operators are used.
-							              'compare' => '=', // Optional, defaults to "=". Available operators: =, <, >, <=, >=, IN, NOT IN
+							              'value' => 'image',
+							              'compare' => '=',
 						              )
 					              ) ),
 				              Field::make( 'text', 'sense', __( 'Значення досягнення' ) )
 					              ->set_conditional_logic( array(
-						              'relation' => 'AND', // Optional, defaults to "AND"
+						              'relation' => 'AND',
 						              array(
 							              'field' => 'select_type',
-							              'value' => 'text', // Optional, defaults to "". Should be an array if "IN" or "NOT IN" operators are used.
-							              'compare' => '=', // Optional, defaults to "=". Available operators: =, <, >, <=, >=, IN, NOT IN
+							              'value' => 'text',
+							              'compare' => '=',
 						              )
 					              ) ),
 			              ) ),
+		         ));
 
-			            Field::make_text('security_about_us_assertion_text'.security_lang_prefix(), 'Текс твердження'),
-			            Field::make_image('security_about_us_assertion_image'.security_lang_prefix(), 'Зображення твердження')
-			                ->set_value_type('url'),
+		Container::make( 'post_meta', __('Чому обирають нас') )
+		         ->where( function( $homeFields ) {
+			         $homeFields->where( 'post_type', '=', 'page' );
+			         $homeFields->where( 'post_template', '=', 'template-home.php' );
+		         } )
+
+		         ->add_fields( array(
+
+			         Field::make( 'text', 'security_why_choose_us_title'.security_lang_prefix(), __( 'Заголовок блоку' )  ),
+
+			         Field::make( 'complex', 'security_why_choose_us_list'.security_lang_prefix(), __( 'Перелік переваг' ) )
+			              ->add_fields( array(
+				              Field::make( 'text', 'title', __( 'Назва переваги' ) ),
+				              Field::make( 'text', 'description', __( 'Опис переваги' ) ),
+			              ) ),
+
+			         Field::make_image('security_why_choose_us_image'.security_lang_prefix(), 'Зображення')
+			            ->set_type('image')
+
+
 		         ));
 
 

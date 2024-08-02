@@ -191,6 +191,11 @@
 
   .content{
     position: relative;
+    padding-bottom: 100px;
+
+    @media(max-width: 992px){
+      padding-bottom: 0;
+    }
 
     .light-element{
       position: absolute;
@@ -233,13 +238,32 @@
     text-align: center;
     @include grey-gradient;
     list-style: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
 
     @media(max-width: 767px){
       width: calc(50% - 12px);
     }
 
-    @media(max-width: 440px){
+    @media(max-width: 575px){
       width: 100%;
+    }
+
+    &:hover{
+      .product-description__term-icon{
+        .svg-pic{
+          path{
+            fill: #D8AE5E;
+          }
+        }
+      }
+
+      .product-description__inner-list{
+        opacity: 1;
+        z-index: 5;
+        display: block;
+      }
     }
   }
 
@@ -256,6 +280,15 @@
     .svg-pic{
       width: 24px;
       height: auto;
+
+      path{
+        fill: $color-white;
+        transition: all 0.2s;
+
+        @media(max-width: 992px){
+          fill: #D8AE5E;
+        }
+      }
     }
   }
 
@@ -268,6 +301,51 @@
       font-size: 16px;
     }
 
+  }
+
+  &__inner-list{
+    padding: 16px 24px 24px;
+    margin: 0;
+    transition: all 0.2s;
+    left: 0;
+    position: absolute;
+    z-index: 1;
+    border-radius: 8px;
+    background: linear-gradient(154deg, #262626 0%, #262626 0.01%, #262626 100%);
+    border-radius: 8px;
+    opacity: 0;
+    display: none;
+
+    @media(max-width: 992px){
+      display: block;
+      padding: 16px 0 0 0;
+      position: relative;
+      background-color: rgba(0,0,0,0);
+      border-radius: 0;
+      opacity: 1;
+    }
+  }
+
+  &__inner-item{
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 16px;
+
+    &:last-child{
+      margin-bottom: 0;
+    }
+
+    svg{
+      width: 12px;
+      height: auto;
+      margin-right: 16px;
+      margin-top: 3px;
+    }
+
+    span{
+      width: calc(100% - 28px);
+      text-align: left;
+    }
   }
 }
 
@@ -360,6 +438,71 @@
     font-size: 18px;
     @include golden-text;
     margin-bottom: 16px;
+  }
+
+  .additional-aspects{
+    margin-top: 24px;
+
+    .inner{
+      border-radius: 8px;
+      background: linear-gradient(154deg, #262626 0%, #262626 0.01%, rgba(38, 38, 38, 0.35) 100%);
+      padding: 24px;
+    }
+
+    .block-title{
+      @include golden-text;
+      margin-bottom: 24px;
+    }
+
+    &__list{
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    &__item{
+      list-style: none;
+      width: calc(50% - 12px);
+
+      @media(max-width: 767px){
+        width: 100%;
+      }
+    }
+
+    &__name{
+      font-family: $f-HP-bold;
+      margin-bottom: 16px;
+      color: $color-white;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(216, 174, 94, 0.65);
+      font-size: 24px;
+    }
+
+
+    &__item-list{
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 8px;
+
+      li{
+        list-style: none;
+        display: flex;
+        align-items: flex-start;
+
+        svg{
+          width: 24px;
+          height: auto;
+          margin-right: 8px;
+        }
+
+        span{
+          width: calc(100% - 32px);
+        }
+      }
+    }
   }
 
 
@@ -1459,6 +1602,71 @@
       font-size: 20px;
     }
   }*/
+}
+
+/*--- why-choose-us ---*/
+
+.why-choose-us{
+  background-color: $color-black;
+
+  .block-title{
+    margin-bottom: 32px;
+  }
+
+  .content{
+    display: flex;
+    justify-content: space-between;
+
+    @media(max-width: 767px){
+      flex-wrap: wrap;
+    }
+  }
+
+  &__list{
+    width: calc(50% - 12px);
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 24px;
+
+    @media(max-width: 767px){
+      width: 100%;
+    }
+  }
+
+  &__item{
+    list-style: none;
+  }
+
+  &__name{
+    @include golden-text;
+    font-size: 24px;
+    font-family: $f-HP-bold;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  &__description{
+    font-size: 18px;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .pic-wrapper{
+    width: calc(50% - 12px);
+    border-radius: 8px;
+    overflow: hidden;
+
+    @media(max-width: 767px){
+      display: none;
+    }
+
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 }
 
 /*--- decision ---*/

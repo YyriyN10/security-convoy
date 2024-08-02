@@ -91,14 +91,14 @@ jQuery(function($) {
 
   currentLang.remove();
 
-  /*$('#lang-nav .current').on('click', function (e) {
+  $('#lang-nav .current').on('click', function (e) {
     e.preventDefault();
 
     $(this).toggleClass('active');
 
     $('#lang-nav .lang-list').slideToggle(200);
 
-  });*/
+  });
 
   //Mob Menu
 
